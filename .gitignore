@@ -2,6 +2,15 @@
 .gradle/
 build/
 
-#IntelliJ project filee
+### IntelliJ IDEA ###
 .idea
-*.xml
+*.iws
+*.iml
+*.ipr
+out/
+
+#Java template
+*.class
+
+### macOS ###
+.DS_Store
