@@ -12,14 +12,9 @@ public class DefaultFiltering {
 
     public static void main(String[] args) {
 
-        List<Apple> inventory = Arrays.asList(
-                new Apple(80, GREEN.getColor()),
-                new Apple(155, GREEN.getColor()),
-                new Apple(120, RED.getColor()),
-                new Apple(170, BLUE.getColor())
-        );
-
-        defaultSorting(inventory);
+        Inventory inventory = new Inventory();
+        List<Apple> appleInventory = inventory.getInventory();
+        defaultSorting(appleInventory);
 
     }
 
@@ -33,9 +28,6 @@ public class DefaultFiltering {
 
         util.printList(sortingResult);
     }
-
-
-
 
 
 }

@@ -13,24 +13,20 @@ public class ModernFiltering {
 
     public static void main(String[] args) {
 
-        List<Apple> inventory = Arrays.asList(
-                new Apple(80, GREEN.getColor()),
-                new Apple(155, GREEN.getColor()),
-                new Apple(120, RED.getColor()),
-                new Apple(170, BLUE.getColor())
-        );
+        Inventory inventory = new Inventory();
+        List<Apple> appleInventory = inventory.getInventory();
 
         //코드 넘겨주기
-        List<Apple> greenSortingResult = filterApples(inventory, ModernFiltering::isGreenApple);
+        List<Apple> greenSortingResult = filterApples(appleInventory, ModernFiltering::isGreenApple);
         util.printList(greenSortingResult);
 
         System.out.println();
 
-        List<Apple> weightSortingResult = filterApples(inventory, ModernFiltering::isHeavyApple);
+        List<Apple> weightSortingResult = filterApples(appleInventory, ModernFiltering::isHeavyApple);
         util.printList(weightSortingResult);
 
         System.out.println("\n========= 메서드 전달에서 람다로 =========\n");
-        lambda(inventory);
+        lambda(appleInventory);
     }
 
     public static void lambda(List<Apple> inventory) {
