@@ -1,14 +1,16 @@
 package chapter1;
 
+import common.Apple;
+import common.Color;
+import common.Inventory;
+import common.Util;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static chapter1.Color.*;
+import static common.Color.*;
 
 public class DefaultFiltering {
-
-    static Util util = new Util();
 
     public static void main(String[] args) {
 
@@ -26,7 +28,7 @@ public class DefaultFiltering {
             }
         }
 
-        util.printList(sortingResult);
+        Util.printList(sortingResult);
     }
 
 

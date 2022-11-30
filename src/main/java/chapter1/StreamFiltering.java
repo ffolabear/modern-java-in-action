@@ -1,5 +1,9 @@
 package chapter1;
 
+import common.Apple;
+import common.Inventory;
+import common.Util;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

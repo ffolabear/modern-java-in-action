@@ -1,15 +1,16 @@
 package chapter1;
 
+import common.Apple;
+import common.Inventory;
+import common.Util;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static chapter1.Color.*;
+import static common.Color.*;
 
 
 public class ModernFiltering {
-
-    static Util util = new Util();
 
     public static void main(String[] args) {
 
@@ -18,12 +19,12 @@ public class ModernFiltering {
 
         //코드 넘겨주기
         List<Apple> greenSortingResult = filterApples(appleInventory, ModernFiltering::isGreenApple);
-        util.printList(greenSortingResult);
+        Util.printList(greenSortingResult);
 
         System.out.println();
 
         List<Apple> weightSortingResult = filterApples(appleInventory, ModernFiltering::isHeavyApple);
-        util.printList(weightSortingResult);
+        Util.printList(weightSortingResult);
 
         System.out.println("\n========= 메서드 전달에서 람다로 =========\n");
         lambda(appleInventory);
@@ -32,12 +33,12 @@ public class ModernFiltering {
     public static void lambda(List<Apple> inventory) {
 
         List<Apple> greenSortingResult = filterApples(inventory, (Apple a) -> GREEN.getColor().equals(a.getColor()));
-        util.printList(greenSortingResult);
+        Util.printList(greenSortingResult);
 
         System.out.println();
 
         List<Apple> weightSortingResult = filterApples(inventory, (Apple a) -> a.getWeight() > 150);
-        util.printList(weightSortingResult);
+        Util.printList(weightSortingResult);
     }
 
     public static boolean isGreenApple(Apple apple) {
