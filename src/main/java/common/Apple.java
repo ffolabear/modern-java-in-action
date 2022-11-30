@@ -1,4 +1,4 @@
-package chapter1;
+package common;
 
 public class Apple {
 
