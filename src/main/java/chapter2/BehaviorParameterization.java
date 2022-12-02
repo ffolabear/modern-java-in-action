@@ -3,9 +3,7 @@ package chapter2;
 import common.Apple;
 import common.Color;
 import common.Inventory;
-import common.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BehaviorParameterization {
@@ -37,6 +35,11 @@ public class BehaviorParameterization {
         public boolean test(Apple apple) {
             return Color.RED.getColor().equals(apple.getColor()) && apple.getWeight() > 150;
         }
+    }
+
+    public interface ApplePredicate {
+        boolean test(Apple apple);
+
     }
 
 
