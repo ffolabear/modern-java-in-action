@@ -11,11 +11,11 @@ public class Quiz1 {
 
     public static void main(String[] args) {
         List<Apple> apples = inventory.getInventory();
-
+        prettyPrintApple(inventory.getInventory(), new AppleFancyFormatter());
 
     }
 
-    public class AppleFancyFormatter implements AppleFormatter {
+    public static class AppleFancyFormatter implements AppleFormatter {
         @Override
         public String accept(Apple a) {
             String character = a.getWeight() > 150 ? "heavy" : "light";
@@ -23,14 +23,22 @@ public class Quiz1 {
         }
     }
 
-
-    public void prettyPrintApple(List<Apple> inventory) {
-        for (Apple a : inventory) {
-
+    public class AppleSimpleFormatter implements AppleFormatter {
+        @Override
+        public String accept(Apple a) {
+            return a.getWeight() + "g";
         }
     }
 
-    public interface AppleFormatter{
+
+    public static void prettyPrintApple(List<Apple> inventory, AppleFormatter formatter) {
+        for (Apple a : inventory) {
+            String output = formatter.accept(a);
+            System.out.println(output);
+        }
+    }
+
+    public interface AppleFormatter {
         String accept(Apple a);
     }
 
