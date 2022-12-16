@@ -3,14 +3,14 @@ package common;
 import java.util.Arrays;
 import java.util.List;
 
-import static chapter1.Color.*;
+import static common.Color.*;
+
 
 public class Inventory {
 
     List<Apple> inventory;
 
     public Inventory() {
-
         inventory = Arrays.asList(
                 new Apple(80, GREEN.getColor()),
                 new Apple(155, GREEN.getColor()),
