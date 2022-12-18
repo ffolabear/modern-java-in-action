@@ -2,7 +2,7 @@ package chapter2;
 
 import common.Apple;
 import common.Color;
-import common.Inventory;
+import common.AppleInventory;
 import common.Util;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class RequirementsApply {
 
-    static Inventory inventory = new Inventory();
+    static AppleInventory inventory = new AppleInventory();
 
     public static void main(String[] args) {
         List<Apple> apples = inventory.getInventory();

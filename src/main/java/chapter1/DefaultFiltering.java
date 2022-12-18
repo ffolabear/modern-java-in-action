@@ -1,8 +1,7 @@
 package chapter1;
 
 import common.Apple;
-import common.Color;
-import common.Inventory;
+import common.AppleInventory;
 import common.Util;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class DefaultFiltering {
 
     public static void main(String[] args) {
 
-        Inventory inventory = new Inventory();
+        AppleInventory inventory = new AppleInventory();
         List<Apple> appleInventory = inventory.getInventory();
         defaultSorting(appleInventory);
 

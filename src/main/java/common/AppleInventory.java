@@ -6,11 +6,11 @@ import java.util.List;
 import static common.Color.*;
 
 
-public class Inventory {
+public class AppleInventory {
 
     List<Apple> inventory;
 
-    public Inventory() {
+    public AppleInventory() {
         inventory = Arrays.asList(
                 new Apple(80, GREEN.getColor()),
                 new Apple(155, GREEN.getColor()),
@@ -18,6 +18,9 @@ public class Inventory {
                 new Apple(170, BLUE.getColor())
         );
 
+    }
+
+    private void checkFruit(Object o) {
     }
 
     public List<Apple> getInventory() {

@@ -1,7 +1,7 @@
 package chapter1;
 
 import common.Apple;
-import common.Inventory;
+import common.AppleInventory;
 import common.Util;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class ModernFiltering {
 
     public static void main(String[] args) {
 
-        Inventory inventory = new Inventory();
+        AppleInventory inventory = new AppleInventory();
         List<Apple> appleInventory = inventory.getInventory();
 
         //코드 넘겨주기

@@ -1,7 +1,7 @@
 package chapter1;
 
 import common.Apple;
-import common.Inventory;
+import common.AppleInventory;
 import common.Util;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class StreamFiltering {
 
     public static void main(String[] args) {
 
-        Inventory inventory = new Inventory();
+        AppleInventory inventory = new AppleInventory();
         List<Apple> appleInventory = inventory.getInventory();
 
         Util.printList(sequentialStreamFiltering(appleInventory));

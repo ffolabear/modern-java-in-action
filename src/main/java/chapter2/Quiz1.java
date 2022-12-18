@@ -1,13 +1,13 @@
 package chapter2;
 
 import common.Apple;
-import common.Inventory;
+import common.AppleInventory;
 
 import java.util.List;
 
 public class Quiz1 {
 
-    static Inventory inventory = new Inventory();
+    static AppleInventory inventory = new AppleInventory();
 
     public static void main(String[] args) {
         List<Apple> apples = inventory.getInventory();

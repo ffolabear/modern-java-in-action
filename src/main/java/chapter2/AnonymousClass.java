@@ -1,8 +1,6 @@
 package chapter2;
 
-import common.Apple;
-import common.Color;
-import common.Inventory;
+import common.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +9,9 @@ public class AnonymousClass {
 
     public static void main(String[] args) {
 
-        Inventory inventory = new Inventory();
-        List<Apple> appleInventory = inventory.getInventory();
-
+        List<Apple> appleInventory = new AppleInventory().getInventory();
+        List<Orange> orangeInventory = new OrangeInventory().getInventory();
+        List<Grape> grapeInventory = new GrapeInventory().getInventory();
 
         List<Apple> anonymousFilter1 = filteringApples(appleInventory, new ApplePredicate() {
             @Override
@@ -22,7 +20,8 @@ public class AnonymousClass {
             }
         });
 
-        List<Apple> anonymousFilter2 = filteringApples(appleInventory, (Apple apple) -> Color.RED.getColor().equals(apple.getColor()));
+        List<Apple> appleAnonymousFilter = filteringApples(
+                appleInventory, (Apple apple) -> Color.RED.getColor().equals(apple.getColor()));
 
     }
 

@@ -1,14 +1,14 @@
 package chapter2;
 
 import common.Apple;
-import common.Inventory;
+import common.AppleInventory;
 
 import java.util.List;
 
 public class Quiz1_2 {
 
     public static void main(String[] args) {
-        Inventory inventory = new Inventory();
+        AppleInventory inventory = new AppleInventory();
         List<Apple> appleInventory = inventory.getInventory();
 
         prettyPrintApple1(appleInventory);
