@@ -3,7 +3,6 @@ package chapter2;
 import common.Apple;
 import common.Color;
 import common.AppleInventory;
-import common.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +13,6 @@ public class RequirementsApply {
 
     public static void main(String[] args) {
         List<Apple> apples = inventory.getInventory();
-        Util.printList(filterGreenApples(apples));
-        Util.printList(filterApplesByColor(apples, Color.GREEN));
-        Util.printList(filterApples(apples, Color.GREEN, 150, true));
-
     }
 
     //첫번째 시도

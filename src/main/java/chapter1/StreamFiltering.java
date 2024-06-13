@@ -2,7 +2,6 @@ package chapter1;
 
 import common.Apple;
 import common.AppleInventory;
-import common.Util;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,11 +13,6 @@ public class StreamFiltering {
         AppleInventory inventory = new AppleInventory();
         List<Apple> appleInventory = inventory.getInventory();
 
-        Util.printList(sequentialStreamFiltering(appleInventory));
-
-        System.out.println();
-
-        Util.printList(parallelStreamFiltering(appleInventory));
     }
 
     //순차 처리방식
