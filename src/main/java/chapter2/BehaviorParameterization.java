@@ -1,5 +1,7 @@
 package chapter2;
 
+import static common.Color.*;
+
 import common.Apple;
 import common.Color;
 import common.AppleInventory;
@@ -13,6 +15,22 @@ public class BehaviorParameterization {
 
     public static void main(String[] args) {
         List<Apple> apples = inventory.getInventory();
+        List<Apple> appleList = filterApples(apples, new AppleRedAndHeavyPredicate());
+        System.out.println("apples = " + apples);
+        System.out.println("appleList = " + appleList);
+
+        List<Apple> appleList2 = filterApples(apples, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return apple.getColor().equals(GREEN.getColor());
+            }
+        });
+
+        List<Apple> appleList3 = filterApples(apples, apple -> apple.getColor().equals(GREEN.getColor()));
+    }
+
+    public interface ApplePredicate {
+        boolean test(Apple apple);
     }
 
     //Predicate 함수를 재정의 -> 전략
@@ -27,22 +45,16 @@ public class BehaviorParameterization {
     class AppleGreenColorPredicate implements ApplePredicate {
         @Override
         public boolean test(Apple apple) {
-            return Color.GREEN.getColor().equals(apple.getColor());
+            return GREEN.getColor().equals(apple.getColor());
         }
     }
 
     class AppleRedHeavyPredicate implements ApplePredicate{
         @Override
         public boolean test(Apple apple) {
-            return Color.RED.getColor().equals(apple.getColor()) && apple.getWeight() > 150;
+            return RED.getColor().equals(apple.getColor()) && apple.getWeight() > 150;
         }
     }
-
-    public interface ApplePredicate {
-        boolean test(Apple apple);
-
-    }
-
 
     public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate p) {
         List<Apple> result = new ArrayList<>();
@@ -53,5 +65,15 @@ public class BehaviorParameterization {
         }
         return result;
     }
+
+    static class AppleRedAndHeavyPredicate implements ApplePredicate{
+        @Override
+        public boolean test(Apple apple) {
+            return GREEN.getColor().equals(apple.getColor())
+                    && apple.getWeight() > 150;
+        }
+    }
+
+
 
 }
