@@ -27,6 +27,8 @@ public class BehaviorParameterization {
         });
 
         List<Apple> appleList3 = filterApples(apples, apple -> apple.getColor().equals(GREEN.getColor()));
+
+        ComparingParameter.filter(inventory, (Apple apple) -> RED.getColor().equals(apple.getColor()));
     }
 
     public interface ApplePredicate {
