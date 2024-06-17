@@ -7,6 +7,7 @@ import common.Color;
 import common.AppleInventory;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class BehaviorParameterization {
@@ -27,8 +28,9 @@ public class BehaviorParameterization {
         });
 
         List<Apple> appleList3 = filterApples(apples, apple -> apple.getColor().equals(GREEN.getColor()));
+        ComparingParameter.filter(inventory.getInventory(), (Apple apple) -> RED.getColor().equals(apple.getColor()));
 
-        ComparingParameter.filter(inventory, (Apple apple) -> RED.getColor().equals(apple.getColor()));
+        inventory.getInventory().sort((o1, o2) -> o1.getWeight() - o2.getWeight());
     }
 
     public interface ApplePredicate {
