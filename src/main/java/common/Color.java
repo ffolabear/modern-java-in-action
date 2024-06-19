@@ -3,7 +3,7 @@ package common;
 public enum Color {
 
     GREEN("green"),
-    RED("RED"),
+    RED("red"),
     YELLOW("yellow"),
     BLUE("blue");
 

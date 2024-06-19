@@ -13,7 +13,7 @@
     <br>
 
 
-3. `int` 형식의 두 파라미터를 가지고 `void` 리턴
+3. `int` 형식의 두 파라미터를 가지고 `void` 리턴ㅂ
     ```java
    (int x, int y) -> {
        System.out.println("Result : ");
