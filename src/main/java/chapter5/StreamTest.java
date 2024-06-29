@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class StreamTest {
 
@@ -45,7 +47,7 @@ public class StreamTest {
 //        System.out.println("==============");
 //        streamSlicing1();
 //        System.out.println("==============");
-//        streamSlicing2();
+        streamSlicing2();
 //        System.out.println("==============");
 //        streamLimit();
 //        System.out.println("==============");
@@ -57,9 +59,9 @@ public class StreamTest {
 //        streamFindAny();
 //        streamFindAll();
 //        streamFindNone();
-        streamReduce();
-        streamReduceOptional();
-        streamReduceMaxMin();
+//        streamReduce();
+//        streamReduceOptional();
+//        streamReduceMaxMin();
     }
 
     private static void filteringByPredicate() {
@@ -152,6 +154,14 @@ public class StreamTest {
         Optional<Integer> reduce = list.stream().reduce(Integer::sum);
         Optional<Integer> reduce1 = list.stream().reduce((a, b) -> a + b);
         System.out.println(reduce + " " + reduce1);
+    }
+
+    private static void pythagoras(){
+        Stream<double[]> pythagorasTriples = IntStream.rangeClosed(1, 100).boxed()
+                .flatMap(a -> IntStream.rangeClosed(a, 100)
+                        .mapToObj(
+                                b -> new double[]{a, b, (int) Math.sqrt(a * a + b * b)})
+                        .filter(t -> t[2] % 1 == 0));
     }
 
 }
