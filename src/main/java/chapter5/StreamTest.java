@@ -8,6 +8,7 @@ import chapter4.Dish;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamTest {
 
@@ -40,13 +41,19 @@ public class StreamTest {
         );
 
 //        filteringByPredicate();
-        filteringByDistinct();
-        System.out.println("==============");
-        streamSlicing1();
-        System.out.println("==============");
-        streamSlicing2();
-        System.out.println("==============");
-        streamLimit();
+//        filteringByDistinct();
+//        System.out.println("==============");
+//        streamSlicing1();
+//        System.out.println("==============");
+//        streamSlicing2();
+//        System.out.println("==============");
+//        streamLimit();
+//        System.out.println("==============");
+//        streamSkip();
+//        System.out.println("==============");
+//        streamMapping();
+//        System.out.println("==============");
+        streamFlatMapping();
     }
 
     private static void filteringByPredicate() {
@@ -82,5 +89,28 @@ public class StreamTest {
                 .limit(5)
                 .forEach(System.out::println);
     }
+
+    private static void streamSkip() {
+        menu.stream()
+                .skip(5)
+                .forEach(System.out::println);
+    }
+
+    private static void streamMapping() {
+        menu.stream()
+                .map(dish -> dish.getName())
+                .forEach(System.out::println);
+    }
+
+    private static void streamFlatMapping() {
+        List<String> words = Arrays.asList("Apple", "Banana", "Orange", "Pie", "Water");
+        List<String> collect = words.stream()
+                .map(word -> word.split(""))
+                .flatMap(Arrays::stream)
+                .collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+
 
 }
