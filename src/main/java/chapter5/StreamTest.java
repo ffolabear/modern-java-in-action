@@ -17,7 +17,7 @@ public class StreamTest {
 
         menu = Arrays.asList(
                 new Dish("pork", false, 800, MEAT),
-                new Dish("beek", false, 700, MEAT),
+                new Dish("beef", false, 700, MEAT),
                 new Dish("chicken", false, 400, MEAT),
 
                 new Dish("french fries", true, 530, OTHER),
@@ -41,6 +41,12 @@ public class StreamTest {
 
 //        filteringByPredicate();
         filteringByDistinct();
+        System.out.println("==============");
+        streamSlicing1();
+        System.out.println("==============");
+        streamSlicing2();
+        System.out.println("==============");
+        streamLimit();
     }
 
     private static void filteringByPredicate() {
@@ -56,6 +62,24 @@ public class StreamTest {
                 .filter(dish -> dish.getName().equals("pizza"))
                 .distinct()
                 .collect(Collectors.toList())
+                .forEach(System.out::println);
+    }
+
+    private static void streamSlicing1() {
+        menu.stream()
+                .takeWhile(dish -> dish.getName().equals("pork"))
+                .forEach(System.out::println);
+    }
+
+    private static void streamSlicing2() {
+        menu.stream()
+                .dropWhile(dish -> dish.getType() == MEAT)
+                .forEach(System.out::println);
+    }
+
+    private static void streamLimit() {
+        menu.stream()
+                .limit(5)
                 .forEach(System.out::println);
     }
 

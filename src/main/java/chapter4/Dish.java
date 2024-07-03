@@ -1,5 +1,7 @@
 package chapter4;
 
+import java.util.Objects;
+
 public class Dish {
 
     private final String name;
@@ -42,5 +44,23 @@ public class Dish {
                 ", calories=" + calories +
                 ", type=" + type +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Dish dish = (Dish) o;
+        return isVegetarian() == dish.isVegetarian() && getCalories() == dish.getCalories() && Objects.equals(
+                getName(), dish.getName()) && getType() == dish.getType();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), isVegetarian(), getCalories(), getType());
     }
 }
