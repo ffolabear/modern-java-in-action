@@ -112,8 +112,9 @@ public class StreamTest {
     }
 
     private void streamFindAny() {
-        menu.stream()
+        boolean anyMatch = menu.stream()
                 .anyMatch(dish -> dish.getName().equals("pork"));
+        System.out.println(anyMatch);
     }
 
 }
