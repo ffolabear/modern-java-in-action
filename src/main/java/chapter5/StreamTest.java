@@ -7,8 +7,8 @@ import static chapter4.Dish.Type.OTHER;
 import chapter4.Dish;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamTest {
 
@@ -53,7 +53,13 @@ public class StreamTest {
 //        System.out.println("==============");
 //        streamMapping();
 //        System.out.println("==============");
-        streamFlatMapping();
+//        streamFlatMapping();
+//        streamFindAny();
+//        streamFindAll();
+//        streamFindNone();
+        streamReduce();
+        streamReduceOptional();
+        streamReduceMaxMin();
     }
 
     private static void filteringByPredicate() {
@@ -111,10 +117,41 @@ public class StreamTest {
         System.out.println(collect);
     }
 
-    private void streamFindAny() {
+    private static void streamFindAny() {
         boolean anyMatch = menu.stream()
                 .anyMatch(dish -> dish.getName().equals("pork"));
         System.out.println(anyMatch);
+    }
+
+    private static void streamFindAll() {
+        boolean anyMatch = menu.stream()
+                .allMatch(dish -> dish.getCalories() > 100);
+        System.out.println(anyMatch);
+    }
+
+    private static void streamFindNone() {
+        boolean anyMatch = menu.stream()
+                .allMatch(dish -> dish.getCalories() > 1000);
+        System.out.println(anyMatch);
+    }
+
+    private static void streamReduce() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Integer reduce = list.stream().reduce(1, (a, b) -> a * b);
+        System.out.println(reduce);
+    }
+
+    private static void streamReduceOptional() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Optional<Integer> reduce = list.stream().reduce((a, b) -> a * b);
+        System.out.println(reduce.get());
+    }
+
+    private static void streamReduceMaxMin() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Optional<Integer> reduce = list.stream().reduce(Integer::sum);
+        Optional<Integer> reduce1 = list.stream().reduce((a, b) -> a + b);
+        System.out.println(reduce + " " + reduce1);
     }
 
 }
