@@ -37,4 +37,11 @@ public class PrimeNumberCollector implements Collector<Integer, Map<Boolean, Lis
         };
     }
 
+    public Function<Map<Boolean, List<Integer>>,Map<Boolean, List<Integer>>> finisher() {
+        return Function.identity();
+    }
+
+    public Set<Characteristics> characteristics() {
+        return Collections.unmodifiableSet(EnumSet.of(IDENTITY_FINISH));
+    }
 }
