@@ -1,12 +1,19 @@
 package chapter6;
 
+import static java.util.stream.Collector.Characteristics.IDENTITY_FINISH;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collector.Characteristics;
 
 public class PrimeNumberCollector implements Collector<Integer, Map<Boolean, List<Integer>>, Map<Boolean, List<Integer>>>{
 
@@ -44,4 +51,4 @@ public class PrimeNumberCollector implements Collector<Integer, Map<Boolean, Lis
     public Set<Characteristics> characteristics() {
         return Collections.unmodifiableSet(EnumSet.of(IDENTITY_FINISH));
     }
-}
+} 
