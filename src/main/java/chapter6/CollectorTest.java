@@ -63,7 +63,7 @@ public class CollectorTest {
         System.out.println(finisher);
 
         //characteristics
-        newCollector.characteristics().add(Characteristics.CONCURRENT);
+//        newCollector.characteristics().add(Characteristics.CONCURRENT);
     }
 
 }
