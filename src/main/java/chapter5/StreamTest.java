@@ -152,16 +152,21 @@ public class StreamTest {
     private static void streamReduceMaxMin() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         Optional<Integer> reduce = list.stream().reduce(Integer::sum);
-        Optional<Integer> reduce1 = list.stream().reduce((a, b) -> a + b);
-        System.out.println(reduce + " " + reduce1);
+        list.stream().reduce((a, b) -> a + b);
+        System.out.println(reduce + " " + reduce);
     }
 
-    private static void pythagoras(){
+    private static void pythagoras() {
         Stream<double[]> pythagorasTriples = IntStream.rangeClosed(1, 100).boxed()
                 .flatMap(a -> IntStream.rangeClosed(a, 100)
                         .mapToObj(
                                 b -> new double[]{a, b, (int) Math.sqrt(a * a + b * b)})
                         .filter(t -> t[2] % 1 == 0));
+    }
+
+    private static void test() {
+        menu.stream()
+                .mapToInt(dish -> dish.getCalories());
     }
 
 }

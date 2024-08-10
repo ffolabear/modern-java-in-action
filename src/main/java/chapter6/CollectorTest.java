@@ -4,6 +4,7 @@ import static chapter4.Dish.Type.FISH;
 import static chapter4.Dish.Type.MEAT;
 import static chapter4.Dish.Type.OTHER;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.joining;
 
 import chapter4.Dish;
 import java.util.ArrayList;
@@ -56,6 +57,23 @@ public class CollectorTest {
         newMenu = new ArrayList<>();
         List<Dish> apply = newCollector.combiner().apply(newMenu, additionalMenu);
         System.out.println(apply);
+
+        //joining 으로 문자열 합치기
+        String joinMenu = menu.stream().map(dish -> dish.getName()).collect(joining(", "));
+        String reduceJoinMenu = menu.stream()
+                .map(Dish::getName)
+                .reduce((dish1, dish2) -> dish1 + ", " + dish2)
+                .get();
+
+        String reducingMenu = menu.stream()
+                .map(Dish::getName)
+                .collect(Collectors.reducing((dish1, dish2) -> dish1 + ", " + dish2))
+                .orElse("");
+
+
+        System.out.println("join string : " + joinMenu);
+        System.out.println("reduce join string : " + reduceJoinMenu);
+        System.out.println("reducing join string : " + reducingMenu);
 
         //finisher
         newMenu = new ArrayList<>();
