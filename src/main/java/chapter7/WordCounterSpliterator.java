@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 public class WordCounterSpliterator implements Spliterator<Character> {
 
     private final String string;
-    private int currentChar;
+    private int currentChar = 0;
 
     public WordCounterSpliterator(String string) {
         this.string = string;
