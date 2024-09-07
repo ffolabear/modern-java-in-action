@@ -38,7 +38,6 @@ public class WordCounterTest {
 
         Spliterator<Character> spliterator = new WordCounterSpliterator(SENTENCE);
         Stream<Character> stream = StreamSupport.stream(spliterator, true);
-
         System.out.println("Found " + countWords(stream) + " words");
     }
 
