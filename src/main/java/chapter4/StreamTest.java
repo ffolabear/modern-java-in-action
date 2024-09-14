@@ -1,8 +1,8 @@
 package chapter4;
 
-import static chapter4.Dish.Type.*;
+import static common.Dish.Type.*;
 
-import chapter4.Dish.Type;
+import common.Dish;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

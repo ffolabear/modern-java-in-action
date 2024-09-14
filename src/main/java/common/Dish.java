@@ -1,4 +1,4 @@
-package chapter4;
+package common;
 
 import java.util.Objects;
 
@@ -63,4 +63,15 @@ public class Dish {
     public int hashCode() {
         return Objects.hash(getName(), isVegetarian(), getCalories(), getType());
     }
+
+    public CaloricLevel getCaloricLevel() {
+        if (this.getCalories() <= 400) {
+            return CaloricLevel.DIET;
+        } else if (this.getCalories() <= 700) {
+            return CaloricLevel.NORMAL;
+        } else {
+            return CaloricLevel.FAT;
+        }
+    }
 }
+

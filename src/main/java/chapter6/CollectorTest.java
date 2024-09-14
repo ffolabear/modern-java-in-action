@@ -1,16 +1,15 @@
 package chapter6;
 
-import static chapter4.Dish.Type.FISH;
-import static chapter4.Dish.Type.MEAT;
-import static chapter4.Dish.Type.OTHER;
+import static common.Dish.Type.FISH;
+import static common.Dish.Type.MEAT;
+import static common.Dish.Type.OTHER;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 
-import chapter4.Dish;
+import common.Dish;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector.Characteristics;
 import java.util.stream.Collectors;
 
 public class CollectorTest {

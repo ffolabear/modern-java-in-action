@@ -1,10 +1,10 @@
 package chapter5;
 
-import static chapter4.Dish.Type.FISH;
-import static chapter4.Dish.Type.MEAT;
-import static chapter4.Dish.Type.OTHER;
+import static common.Dish.Type.FISH;
+import static common.Dish.Type.MEAT;
+import static common.Dish.Type.OTHER;
 
-import chapter4.Dish;
+import common.Dish;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
