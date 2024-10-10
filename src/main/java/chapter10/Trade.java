@@ -6,9 +6,18 @@ public class Trade {
         BUY, SELL
     }
 
+    private Type type;
     private Stock stock;
     private int quantity;
     private double price;
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 
     public Stock getStock() {
         return stock;
