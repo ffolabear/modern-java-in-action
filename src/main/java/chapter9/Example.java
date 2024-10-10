@@ -1,18 +1,16 @@
 package chapter9;
 
-import static common.Dish.Type.FISH;
 import static common.Dish.Type.MEAT;
 import static common.Dish.Type.OTHER;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
 
 import common.CaloricLevel;
 import common.Dish;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Example {
 
