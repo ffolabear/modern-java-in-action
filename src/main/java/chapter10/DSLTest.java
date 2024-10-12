@@ -1,5 +1,13 @@
 package chapter10;
 
+import static chapter10.MethodChainingOrderBuilder.forCustomer;
+import static chapter10.NestedFunctionOrderBuilder.at;
+import static chapter10.NestedFunctionOrderBuilder.buy;
+import static chapter10.NestedFunctionOrderBuilder.on;
+import static chapter10.NestedFunctionOrderBuilder.order;
+import static chapter10.NestedFunctionOrderBuilder.sell;
+import static chapter10.NestedFunctionOrderBuilder.stock;
+
 public class DSLTest {
 
     public static void main(String[] args) {
@@ -31,7 +39,23 @@ public class DSLTest {
         trade2.setQuantity(50);
         order.addTrade(trade2);
 
-        //메서트 체인
+        //메서드 체인
+        Order order2 = forCustomer("BigBank")
+                .buy(80)
+                .stock("IBM")
+                .on("NYSE")
+                .at(125.00)
+                .sell(50)
+                .stock("GOOGLE")
+                .on("NASDAQ")
+                .at(375.00)
+                .end();
+
+        //중첩 함수
+        Order order3 = order("BigBank",
+                buy(80, stock("IBM", on("NYSE")), at(125.00)),
+                sell(50, stock("GOOGLE", on("NASDAQ")), at(375.00)));
+
     }
 
 }
