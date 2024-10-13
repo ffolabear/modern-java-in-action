@@ -13,19 +13,19 @@ public class NestedFunctionOrderBuilder {
     }
 
     public static Trade buy(int quantity, Stock stock, double price) {
-        return buildTrade(quantity, stock, price, Type.BUY);
+        return buildTrade(quantity, stock, price, Trade.Type.BUY);
     }
 
     public static Trade sell(int quantity, Stock stock, double price) {
-        return buildTrade(quantity, stock, price, Type.SELL);
+        return buildTrade(quantity, stock, price, Trade.Type.SELL);
     }
 
-    private static Trade buildTrade(int quantity, Stock stock, double price, Type type) {
+    private static Trade buildTrade(int quantity, Stock stock, double price, Trade.Type buy) {
         Trade trade = new Trade();
         trade.setQuantity(quantity);
+        trade.setType(buy);
         trade.setStock(stock);
         trade.setPrice(price);
-        trade.setType(type);
         return trade;
     }
 

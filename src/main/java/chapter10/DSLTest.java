@@ -56,6 +56,49 @@ public class DSLTest {
                 buy(80, stock("IBM", on("NYSE")), at(125.00)),
                 sell(50, stock("GOOGLE", on("NASDAQ")), at(375.00)));
 
+        //함수 시퀀싱
+        Order order4 = LambdaOrderBuilder
+                .order(o -> {
+                    o.forCustomer("BigBank");
+                    o.buy(t -> {
+                        t.quantity(80);
+                        t.price(125.00);
+                        t.stock(s -> {
+                            s.symbol("IBM");
+                            s.market("NYSE");
+                        });
+                    });
+                    o.sell(t -> {
+                        t.quantity(50);
+                        t.price(375.00);
+                        t.stock(s -> {
+                            s.symbol("GOOGLE");
+                            s.market("NASDAQ");
+                        });
+                    });
+                });
+
+        //조합하기
+        Order order5 =
+                MixedBuilder.forCustomer("BigBank",
+                        MixedBuilder.buy(t -> t.quantity(80)
+                                .stock("IBM")
+                                .on("NYSE")
+                                .at(125.00)),
+                        MixedBuilder.sell(t -> t.quantity(50)
+                                .stock("GOOGLE")
+                                .on("NASDAQ")
+                                .at(375.00)));
+
+
+        //DSL 에 메서드 참조 사용
+        double value = new TaxCalculator().withTaxRegional().withTaxSurcharge().calculate(order);
+
+        //래팩토링
+        double valueRefactor = new TaxCalculator()
+                .with(Tax::regional)
+                .with(Tax::surcharge)
+                .calculate(order);
     }
 
 }
