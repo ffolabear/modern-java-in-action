@@ -1,11 +1,13 @@
 package chapter11;
 
+import java.util.Optional;
+
 public class Person {
 
-  private Car car;
+    private Optional<Car> car;
 
-  public Car getCar() {
-    return car;
-  }
+    public Optional<Car> getCar() {
+        return car;
+    }
 
 }
