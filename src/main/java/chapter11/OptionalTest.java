@@ -52,4 +52,12 @@ public class OptionalTest {
                 .collect(Collectors.toSet());
     }
 
+    public static Optional<Integer> stringToInt(String string) {
+        try {
+            return Optional.of(Integer.parseInt(string));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
+
 }
