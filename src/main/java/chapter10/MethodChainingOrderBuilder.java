@@ -24,7 +24,7 @@ public class MethodChainingOrderBuilder {
         return new MethodChainingTradeBuilder(this, Trade.Type.SELL, quantity);
     }
 
-    private MethodChainingOrderBuilder addTrade(Trade trade) {
+    MethodChainingOrderBuilder addTrade(Trade trade) {
         order.addTrade(trade);
         return this;
     }
