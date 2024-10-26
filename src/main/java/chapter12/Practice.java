@@ -6,6 +6,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.Chronology;
+import java.time.chrono.JapaneseDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
@@ -18,6 +24,7 @@ public class Practice {
     public static void main(String[] args) {
         localDateExample();
         instantExample();
+        zoneIdExample();
     }
 
     private static void localDateExample() {
@@ -86,6 +93,24 @@ public class Practice {
                 .appendText(ChronoField.YEAR)
                 .parseCaseInsensitive()
                 .toFormatter(Locale.ITALIAN);
+    }
+
+    private static void zoneIdExample() {
+        LocalDateTime dt1 = LocalDateTime.of(2022, 9, 21, 13, 14, 15);
+        ZoneId zoneId = ZoneId.of("Asia/Seoul");
+        System.out.println(zoneId);
+
+        ZoneOffset zoneOffset = ZoneOffset.of("+08:00");
+        OffsetDateTime offsetDateTime = OffsetDateTime.of(dt1, zoneOffset);
+    }
+
+    private void chronoCalendarExample() {
+        LocalDate dt1 = LocalDate.of(2022, 9, 21);
+        JapaneseDate japaneseDate = JapaneseDate.from(dt1);
+
+        Chronology chronology = Chronology.ofLocale(Locale.ITALIAN);
+        ChronoLocalDate now = chronology.dateNow();
+
     }
 
 }
