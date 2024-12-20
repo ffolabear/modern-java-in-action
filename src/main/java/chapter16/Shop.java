@@ -6,7 +6,24 @@ import java.util.concurrent.Future;
 
 public class Shop {
 
-    private final String name;
+    private String name;
+    private float price = 0;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice(String product) {
+        return calculatePrice(product);
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
     public Shop(String name) {
         this.name = name;
@@ -14,13 +31,21 @@ public class Shop {
 
     private static final Random random = new Random();
 
+//    public Future<Double> getPriceAsync(String product) {
+//        CompletableFuture<Double> futurePrice = new CompletableFuture<>();
+//        new Thread(() -> {
+//            try {
+//                double price = calculatePrice(product);
+//                futurePrice.complete(price);
+//            } catch (Exception e) {
+//                futurePrice.completeExceptionally(e);
+//            }
+//        }).start();
+//        return futurePrice;
+//    }
+
     public Future<Double> getPriceAsync(String product) {
-        CompletableFuture<Double> futurePrice = new CompletableFuture<>();
-        new Thread(() -> {
-            double price = calculatePrice(product);
-            futurePrice.complete(price);
-        }).start();
-        return futurePrice;
+        return CompletableFuture.supplyAsync(() -> calculatePrice(product));
     }
 
     private double calculatePrice(String product) {
