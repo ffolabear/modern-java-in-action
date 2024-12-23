@@ -65,7 +65,7 @@ public class CompletableFutureTest {
         List<CompletableFuture<String>> priceFutures =
                 shops.stream()
                         .map(shop -> CompletableFuture.supplyAsync(
-                                () -> shop.getName() + "price is " + shop.getPrice(product)))
+                                () -> shop.getName() + "price is " + shop.getPrice(product), executor))
                         .collect(Collectors.toList());
 
         return priceFutures.stream()
@@ -73,7 +73,7 @@ public class CompletableFutureTest {
                 .collect(Collectors.toList());
     }
 
-    private final Executor executor =
+    private static final Executor executor =
             Executors.newFixedThreadPool(Math.min(shops.size(), 100), new ThreadFactory() {
                 @Override
                 public Thread newThread(Runnable r) {
