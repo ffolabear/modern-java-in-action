@@ -3,7 +3,10 @@ package chapter16;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
 
 public class CompletableFutureTest {
@@ -70,5 +73,14 @@ public class CompletableFutureTest {
                 .collect(Collectors.toList());
     }
 
-
+    private final Executor executor =
+            Executors.newFixedThreadPool(Math.min(shops.size(), 100), new ThreadFactory() {
+                @Override
+                public Thread newThread(Runnable r) {
+                    Thread thread = new Thread(r);
+                    thread.setDaemon(true);
+                    return thread;
+                }
+            });
 }
+
