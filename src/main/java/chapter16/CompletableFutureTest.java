@@ -1,5 +1,7 @@
 package chapter16;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -61,17 +63,41 @@ public class CompletableFutureTest {
 //    }
 
     //개선 #2
-    public static List<String> findPrices(String product) {
-        List<CompletableFuture<String>> priceFutures =
-                shops.stream()
-                        .map(shop -> CompletableFuture.supplyAsync(
-                                () -> shop.getName() + "price is " + shop.getPrice(product), executor))
-                        .collect(Collectors.toList());
+//    public static List<String> findPrices(String product) {
+//        List<CompletableFuture<String>> priceFutures =
+//                shops.stream()
+//                        .map(shop -> CompletableFuture.supplyAsync(
+//                                () -> shop.getName() + "price is " + shop.getPrice(product), executor))
+//                        .collect(Collectors.toList());
+//
+//        return priceFutures.stream()
+//                .map(CompletableFuture::join)
+//                .collect(Collectors.toList());
+//    }
 
+    //가장 간단한 방법으로 새롭게 구현
+//    public static List<String> findPrices(String product) {
+//        return shops.stream()
+//                .map(shop -> shop.getPrice(product))
+//                .map(price -> Quote.parse(price))
+//                .map(quote -> Discount.applyDiscount(quote))
+//                .collect(toList());
+//    }
+
+    //비동기 방식으로 재구현
+    public static List<String> findPrices(String product) {
+        List<CompletableFuture<String>> priceFutures = shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(product), executor))
+                .map(future -> future.thenApply(Quote::parse))
+                .map(future -> future.thenCompose(
+                        quote -> CompletableFuture.supplyAsync(
+                                () -> Discount.applyDiscount(quote), executor)))
+                .collect(toList());
         return priceFutures.stream()
                 .map(CompletableFuture::join)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
+
 
     private static final Executor executor =
             Executors.newFixedThreadPool(Math.min(shops.size(), 100), new ThreadFactory() {
