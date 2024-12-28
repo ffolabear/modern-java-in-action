@@ -2,7 +2,6 @@ package chapter15;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Flow;
 
 public class SimpleCell implements Publisher<Integer>, Subscriber<Integer> {
 

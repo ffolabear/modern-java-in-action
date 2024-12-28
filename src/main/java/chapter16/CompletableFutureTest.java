@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CompletableFutureTest {
 
@@ -47,7 +48,19 @@ public class CompletableFutureTest {
         long duration = (System.nanoTime() - start2) / 1_000_000;
         System.out.println("Done in " + duration + " msecs");
 
+        System.out.println("=====================   random delay 적용 =====================");
+
+        long start3 = System.nanoTime();
+        CompletableFuture[] futures = findPricesStream("myPhone27S")
+                .map(f -> f.thenAccept(
+                        s -> System.out.println(
+                                s + " (done in " + ((System.nanoTime() - start3) / 1_000_000) + " msecs)")))
+                .toArray(size -> new CompletableFuture[size]);
+        CompletableFuture.allOf(futures).join();
+        System.out.println("All shops have now responded in " + (System.nanoTime() - start3) / 1_000_000 + " msecs");
     }
+
+
 
 //    public static List<String> findPrices(String product) {
 //        return shops.stream()
@@ -96,6 +109,15 @@ public class CompletableFutureTest {
         return priceFutures.stream()
                 .map(CompletableFuture::join)
                 .collect(toList());
+    }
+
+    public static Stream<CompletableFuture<String>> findPricesStream(String product) {
+        return shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(
+                        () -> shop.getPrice(product), executor))
+                .map(future -> future.thenApply(Quote::parse))
+                .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(
+                        () -> Discount.applyDiscount(quote), executor)));
     }
 
 

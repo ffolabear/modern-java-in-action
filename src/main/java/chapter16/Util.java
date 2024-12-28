@@ -10,12 +10,21 @@ import java.util.stream.Collectors;
 
 public class Util {
 
-    private static final Random RANDOM = new Random(0);
+    private static final Random random = new Random(0);
     private static final DecimalFormat formatter = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
 
     public static void delay() {
         int delay = 1000;
         //int delay = 500 + RANDOM.nextInt(2000);
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void randomDelay() {
+        int delay = 500 + random.nextInt(2000);
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {
